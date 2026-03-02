@@ -3,8 +3,8 @@ var timerx = null;
 
 //kreiranje liste
 var zdruziActive = false;
-var stariRange = null;
-var stariNumber = null;
+var stStari = 0;
+var stNovi = 0;
 var novoRange = null;
 var novoNumber = null;
 var zdruziIcon = null;
@@ -19,13 +19,30 @@ function KreSezOsv(pOBJID) {
   if (KreSezOsvAkt == 1) {
     KreSezOsvAkt = 0;
 
-    stariRange = parseInt(document.getElementById("stariRange").value, 10);
-    stariNumber = parseInt(document.getElementById("stariNumber").value, 10);
-    novoRange = parseInt(document.getElementById("novoRange").value, 10);
-    novoNumber = parseInt(document.getElementById("novoNumber").value, 10);
-
     if (pOBJID == 'zdruziIcon')
       zdruziActive ^= 1;
+
+
+    if (pOBJID == 'stariRange')
+      stStari = parseInt(document.getElementById("stariRange").value, 10);
+    if (pOBJID == 'stariNumber')
+      stStari = parseInt(document.getElementById("stariNumber").value, 10);
+    if (pOBJID == 'novoRange')
+      stNovi = parseInt(document.getElementById("novoRange").value, 10);
+    if (pOBJID == 'novoNumber')
+      stNovi = parseInt(document.getElementById("novoNumber").value, 10);
+
+
+
+
+document.getElementById("stariRange").value  = String(stStari);        
+document.getElementById("stariNumber").value = String(stStari);         
+document.getElementById("novoRange").value   = String(stNovi);       
+document.getElementById("novoNumber").value  = String(stNovi);        
+
+
+
+
 
 
     if (zdruziActive) {
@@ -34,7 +51,7 @@ function KreSezOsv(pOBJID) {
       document.getElementById("zdruziIcon").className = "bi bi-circle text-secondary fs-4";
     }
 
-   
+
     KreSezOsvAkt = 1;
   }
 }
@@ -229,11 +246,11 @@ function nalozi_body(par0) {
     <label class="form-label">Stari</label>
     <div class="row align-items-center">
       <div class="col">
-        <input type="range" class="form-range" id="stariRange" min="0" max="100" value="50">
+        <input type="range" class="form-range" id="stariRange" min="0" max="100" value="50" onchange="KreSezOsv('stariRange')">
       </div>
       <div class="col-3">
         <input type="number" class="form-control bg-dark text-light border-light"
-               id="stariNumber" min="0" max="100" value="50">
+               id="stariNumber" min="0" max="100" value="50" onchange="KreSezOsv('stariNumber')">
       </div>
     </div>
   </div>
@@ -251,11 +268,11 @@ function nalozi_body(par0) {
     <label class="form-label">Novo</label>
     <div class="row align-items-center">
       <div class="col">
-        <input type="range" class="form-range"  id="novoRange" min="0" max="100" value="50" >
+        <input type="range" class="form-range"  id="novoRange" min="0" max="100" value="50" onchange="KreSezOsv('novoRange')" >
       </div>
       <div class="col-3">
         <input type="number" class="form-control bg-dark text-light border-light"
-               id="novoNumber" min="0" max="100" value="50">
+               id="novoNumber" min="0" max="100" value="50" onchange="KreSezOsv('novoNumber')">
       </div>
     </div>
   </div>

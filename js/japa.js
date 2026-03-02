@@ -48,6 +48,13 @@ function KreSezOsv(pOBJID, stS, stN) {
     document.getElementById("stariRange").max = StPlesov;
     document.getElementById("novoRange").max = StPlesov;
 
+    if (pOBJID == 'stariRange' || pOBJID == 'stariNumber')
+    {
+      if (stStari > StPlesov)
+        stStari = StPlesov;
+      if (stStari + stNovi > StPlesov)
+        stNovi = StPlesov - stStari;
+    }
 
 
     if (stNovi > StPlesov)
@@ -56,16 +63,22 @@ function KreSezOsv(pOBJID, stS, stN) {
     if (stStari + stNovi > StPlesov)
       stStari = StPlesov - stNovi
 
+    if (stStari + stNovi == 0)
+    stNovi=1;  
+
 
     maxN = stNovi + 5;
+    /*
     if (maxN > StPlesov)
       maxN = StPlesov;
+    */
 
-
-
+    
     maxS = stStari + 5;
+    /*
     if (maxS > StPlesov - stNovi)
       maxS = StPlesov - stNovi;
+    */
 
 
 

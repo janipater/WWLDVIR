@@ -3,8 +3,8 @@ var timerx = null;
 
 //kreiranje liste
 var zdruziActive = false;
-var stStari = 0;
-var stNovi = 0;
+var stStari = 5;
+var stNovi = 5;
 var novoRange = null;
 var novoNumber = null;
 var zdruziIcon = null;
@@ -14,10 +14,14 @@ var KreSezOsvAkt = 0
 
 
 
-function KreSezOsv(pOBJID) {
+function KreSezOsv(pOBJID, stS, stN) {
 
   if (KreSezOsvAkt == 1) {
     KreSezOsvAkt = 0;
+    StPlesov = RandomarlinkiAll.length;
+    maxS = 0;
+    maxN = 0;
+
 
     if (pOBJID == 'zdruziIcon')
       zdruziActive ^= 1;
@@ -32,13 +36,48 @@ function KreSezOsv(pOBJID) {
     if (pOBJID == 'novoNumber')
       stNovi = parseInt(document.getElementById("novoNumber").value, 10);
 
+    if (pOBJID == 'init') {
+      stStari = stS;
+      stNovi = stN;
+
+      document.getElementById("stariNumber").max = StPlesov
+      document.getElementById("novoNumber").max = StPlesov;
+
+    }
+
+    document.getElementById("stariRange").max = StPlesov;
+    document.getElementById("novoRange").max = StPlesov;
 
 
 
-document.getElementById("stariRange").value  = String(stStari);        
-document.getElementById("stariNumber").value = String(stStari);         
-document.getElementById("novoRange").value   = String(stNovi);       
-document.getElementById("novoNumber").value  = String(stNovi);        
+    if (stNovi > StPlesov)
+      stNovi = StPlesov;
+
+    if (stStari + stNovi > StPlesov)
+      stStari = StPlesov - stNovi
+
+
+    maxN = stNovi + 5;
+    if (maxN > StPlesov)
+      maxN = StPlesov;
+
+
+
+    maxS = stStari + 5;
+    if (maxS > StPlesov - stNovi)
+      maxS = StPlesov - stNovi;
+
+
+
+    document.getElementById("stariRange").max = maxS;
+    document.getElementById("novoRange").max = maxN;
+
+
+
+    document.getElementById("stariRange").value = stStari;
+    document.getElementById("stariNumber").value = stStari;
+    document.getElementById("novoRange").value = stNovi;
+    document.getElementById("novoNumber").value = stNovi;
 
 
 
@@ -250,7 +289,7 @@ function nalozi_body(par0) {
       </div>
       <div class="col-3">
         <input type="number" class="form-control bg-dark text-light border-light"
-               id="stariNumber" min="0" max="100" value="50" onchange="KreSezOsv('stariNumber')">
+               id="stariNumber" min="0" max="100" value="0" onchange="KreSezOsv('stariNumber')">
       </div>
     </div>
   </div>
@@ -272,7 +311,7 @@ function nalozi_body(par0) {
       </div>
       <div class="col-3">
         <input type="number" class="form-control bg-dark text-light border-light"
-               id="novoNumber" min="0" max="100" value="50" onchange="KreSezOsv('novoNumber')">
+               id="novoNumber" min="0" max="100" value="0" onchange="KreSezOsv('novoNumber')">
       </div>
     </div>
   </div>
@@ -281,6 +320,8 @@ function nalozi_body(par0) {
     `;
 
     KreSezOsvAkt = 1;
+    KreSezOsv('');
+
 
     /*
     zdruziActive = false;

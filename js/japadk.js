@@ -55,10 +55,6 @@ function hexToUtf(hex) {
 }
 
 
-
-
-
-
   function gFrameNav(arlinkliID) {
     linkpage = window.open(arlinki[arlinkliID][1], null, '');
   }

@@ -329,6 +329,12 @@ function nalozi_body(par0) {
     </div>
   </div>
 
+<a href="#" class="btn-img">
+  <img src="img/kocka.gif" alt="Start" class="btn-img-inner black-style">
+</a>
+
+
+
 </div>
     `;
 

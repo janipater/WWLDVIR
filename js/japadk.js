@@ -1,28 +1,99 @@
 
-  var linkpage;
-  var Randomarlinki = new Array();
-  var RandomarlinkiAll = new Array();
-  var strandom = null;
-  var stskip = null;
+var linkpage;
+var Randomarlinki = [];
+var RandomarlinkiAll = [];
+var strandom = null;
+var stskip = null;
 
 
 
 
 
 for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
-    obstaja = 0;
+  obstaja = 0;
 
-    arlinki[vrstica][2] = arlinki[vrstica][2].replace('👢', '<img src="https://www.prettybarngood.com/favicon.ico" style="height:1em; vertical-align:middle;">&nbsp');
+  arlinki[vrstica][2] = arlinki[vrstica][2].replace('👢', '<img src="https://www.prettybarngood.com/favicon.ico" style="height:1em; vertical-align:middle;">&nbsp');
 
 
-    for (rvrstica = 0; rvrstica < Randomarlinki.length; rvrstica++) {
-      if (Randomarlinki[rvrstica] == arlinki[vrstica][0])
-        obstaja = 1;
+  for (rvrstica = 0; rvrstica < Randomarlinki.length; rvrstica++) {
+    if (Randomarlinki[rvrstica] == arlinki[vrstica][0])
+      obstaja = 1;
+  }
+
+  if (obstaja == 0) {
+    /*
+    Randomarlinki[Randomarlinki.length] = arlinki[vrstica][0];
+    RandomarlinkiAll[RandomarlinkiAll.length] = arlinki[vrstica][0];
+    */
+    Randomarlinki.push([arlinki[vrstica][0], 0, 0, 0])
+    RandomarlinkiAll.push([arlinki[vrstica][0], 0, 0])
+  }
+
+
+}
+
+
+
+genrandomPlayL(5,5,0);
+
+
+x = 1;
+
+
+
+
+
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
+function genrandomPlayL(stp, stz, zdr) {
+
+
+
+
+
+
+
+  let RandomarlinkiZ = [];
+  let RandomarlinkiP = [];
+
+  Randomarlinki.length = 0;
+
+
+  if (stp > '0') {
+    let RandomarlinkiP0 = RandomarlinkiAll.slice(0, RandomarlinkiAll.length - stz);
+    shuffle(RandomarlinkiP0);
+    RandomarlinkiP = RandomarlinkiP0.slice(0, stp);
+
+
+    for (vrstica = 0; vrstica < RandomarlinkiP.length; vrstica++) {
+      Randomarlinki[Randomarlinki.length] = RandomarlinkiP[vrstica];
     }
+  }
 
-    if (obstaja == 0) {
-      Randomarlinki[Randomarlinki.length] = arlinki[vrstica][0];
-      RandomarlinkiAll[RandomarlinkiAll.length] = arlinki[vrstica][0];
+  if (stz > '0') {
+    RandomarlinkiZ = RandomarlinkiAll.slice(RandomarlinkiAll.length - stz, RandomarlinkiAll.length);
+    shuffle(RandomarlinkiZ);
+
+    for (vrstica = 0; vrstica < RandomarlinkiZ.length; vrstica++) {
+      Randomarlinki[Randomarlinki.length] = RandomarlinkiZ[vrstica];
     }
 
 
@@ -30,34 +101,36 @@ for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
 
 
 
- strandom = Randomarlinki.length + 1;
- stskip = 0;
+  if (zdr)
+    shuffle(Randomarlinki);
+
+}
 
 
 function utfToHex(str) {
-    const bytes = new TextEncoder().encode(str);
-    return Array.from(bytes)
-        .map(b => b.toString(16).padStart(2, "0"))
-        .join("");
+  const bytes = new TextEncoder().encode(str);
+  return Array.from(bytes)
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
 }
 
 
 function hexToUtf(hex) {
-    if (hex.length % 2 !== 0) {
-        throw new Error("Neveljaven HEX niz");
-    }
+  if (hex.length % 2 !== 0) {
+    throw new Error("Neveljaven HEX niz");
+  }
 
-    const bytes = new Uint8Array(
-        hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
-    );
+  const bytes = new Uint8Array(
+    hex.match(/.{1,2}/g).map(byte => parseInt(byte, 16))
+  );
 
-    return new TextDecoder().decode(bytes);
+  return new TextDecoder().decode(bytes);
 }
 
 
-  function gFrameNav(arlinkliID) {
-    linkpage = window.open(arlinki[arlinkliID][1], null, '');
-  }
+function gFrameNav(arlinkliID) {
+  linkpage = window.open(arlinki[arlinkliID][1], null, '');
+}
 
 
 

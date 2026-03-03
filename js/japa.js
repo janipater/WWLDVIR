@@ -247,6 +247,15 @@ function nalozi_body(par0) {
   }
 
 
+  
+
+  if (par0 === 'predvajajSeznam') {
+      document.getElementById('bodydiv').innerHTML = `to je play`
+   }
+
+
+
+   
   if (par0 == 'services') {
 
 

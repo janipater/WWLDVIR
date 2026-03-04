@@ -180,18 +180,18 @@ function prikazi_PListo(tip, divid) {
 
 
   if (tip == 10) {
-    /*
-        strtmp = `
-    <div class="container-fluid">
-      <div class="row g-2">
-        `;
-    */
+
+    strtmp = `
+<div class="d-flex justify-content-center align-items-center vh-80">
+  <div class="p-4 bg-dark">
+  `;
+
 
 
     stzapred = 0
 
     vfs7 = 'fs-7';
-    vfs3 = 'fs-3 fw-bold';
+    vfs3 = 'fs-1 fw-bold';
     vtextlight = 'text-white';
 
     for (vrsticar = 0; vrsticar < tmparr.length; vrsticar++) {
@@ -202,8 +202,8 @@ function prikazi_PListo(tip, divid) {
       if (stzapred > 0) {
 
         if (stzapred == 2) {
-          vfs7 = 'fs-9';
-          vfs3 = 'fs-6';
+          vfs7 = 'fs-8';
+          vfs3 = 'fs-4';
           vtextlight = 'text-siva';
 
         }
@@ -225,12 +225,17 @@ function prikazi_PListo(tip, divid) {
 
 
               strtmpbot = `
-  <div style="position: absolute; bottom: 10px; left: 0; right: 0;"
-  class="d-flex justify-content-between px-3 bg-dark p-2">
-  <button class="btn btn-outline-light" onclick="runPlay(0,${vrsticar},${vrstica})">Preskoči</button>
-  <button class="btn btn-outline-light" onclick="runPlay(1,${vrsticar},${vrstica})">Predvajaj</button>
-   </div>
-  `;
+  <div class="d-flex justify-content-between px-3 bg-dark p-3">
+    <button class="btn btn-outline-light"
+            onclick="runPlay(0,${vrsticar},${vrstica})">
+      Preskoči
+    </button>
+    <button class="btn btn-outline-light"
+            onclick="runPlay(1,${vrsticar},${vrstica})">
+      Predvajaj
+    </button>
+  </div>
+              `;
 
             }
 
@@ -238,7 +243,8 @@ function prikazi_PListo(tip, divid) {
         >
         <span class="${vfs3}  fw-bold">${arlinki[vrstica][2]}</span>
         <span class="${vfs7}">${arlinki[vrstica][3]}</span>
-        <span class="${vfs7}"></span>
+        <span class="${vfs7}">&nbsp;</span>
+        <span class="${vfs7}">&nbsp;</span>
         </p>
       `;
 
@@ -268,12 +274,18 @@ function prikazi_PListo(tip, divid) {
 
 
     }
-    /*    
-        strtmp = strtmp + `
+
+
+
+
+    strtmp = strtmp + `
       </div >
     </div >
             `;
-    */
+
+
+    strtmp = strtmp + strtmpbot;
+
   }
 
 
@@ -281,8 +293,8 @@ function prikazi_PListo(tip, divid) {
 
 
 
-  
-  strtmp = strtmp + strtmpbot;
+
+
 
 
 

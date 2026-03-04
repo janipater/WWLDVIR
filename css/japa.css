@@ -1,9 +1,13 @@
 .black-style {
-  filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 
 .fs-7 {
     font-size: 0.75rem;
+}
+
+.fs-8 {
+    font-size: 0.65rem;
 }
 
 .fs-9 {
@@ -11,5 +15,13 @@
 }
 
 .text-siva {
-color: #AAAAAA;
+    color: #AAAAAA;
+}
+
+.vh-70 {
+    height: 70vh;
+}
+
+.vh-80 {
+    height: 80vh;
 }

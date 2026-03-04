@@ -16,7 +16,7 @@ for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
 
 
   for (rvrstica = 0; rvrstica < Randomarlinki.length; rvrstica++) {
-    if (Randomarlinki[rvrstica] == arlinki[vrstica][0])
+    if (Randomarlinki[rvrstica][0] == arlinki[vrstica][0])
       obstaja = 1;
   }
 
@@ -63,18 +63,13 @@ function shuffle(array) {
   }
 }
 
+
 function genrandomPlayL(stp, stz, zdr) {
-
-
-
-
-
-
 
   let RandomarlinkiZ = [];
   let RandomarlinkiP = [];
 
-  Randomarlinki.length = 0;
+  Randomarlinki=[];
 
 
   if (stp > '0') {
@@ -84,16 +79,18 @@ function genrandomPlayL(stp, stz, zdr) {
 
 
     for (vrstica = 0; vrstica < RandomarlinkiP.length; vrstica++) {
-      Randomarlinki[Randomarlinki.length] = RandomarlinkiP[vrstica];
-    }
+      Randomarlinki.push([RandomarlinkiP[vrstica][0],0,0]);
+//      Randomarlinki[Randomarlinki.length] = RandomarlinkiP[vrstica];
+       }
   }
 
   if (stz > '0') {
     RandomarlinkiZ = RandomarlinkiAll.slice(RandomarlinkiAll.length - stz, RandomarlinkiAll.length);
-    shuffle(RandomarlinkiZ);
+    //shuffle(RandomarlinkiZ);
 
     for (vrstica = 0; vrstica < RandomarlinkiZ.length; vrstica++) {
-      Randomarlinki[Randomarlinki.length] = RandomarlinkiZ[vrstica];
+      Randomarlinki.push([RandomarlinkiZ[vrstica][0],0,0]);
+      //Randomarlinki[Randomarlinki.length] = RandomarlinkiZ[vrstica];
     }
 
 

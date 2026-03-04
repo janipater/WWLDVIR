@@ -48,8 +48,7 @@ function KreSezOsv(pOBJID, stS, stN) {
     document.getElementById("stariRange").max = StPlesov;
     document.getElementById("novoRange").max = StPlesov;
 
-    if (pOBJID == 'stariRange' || pOBJID == 'stariNumber')
-    {
+    if (pOBJID == 'stariRange' || pOBJID == 'stariNumber') {
       if (stStari > StPlesov)
         stStari = StPlesov;
       if (stStari + stNovi > StPlesov)
@@ -64,7 +63,7 @@ function KreSezOsv(pOBJID, stS, stN) {
       stStari = StPlesov - stNovi
 
     if (stStari + stNovi == 0)
-    stNovi=1;  
+      stNovi = 1;
 
 
     maxN = stNovi + 5;
@@ -73,7 +72,7 @@ function KreSezOsv(pOBJID, stS, stN) {
       maxN = StPlesov;
     */
 
-    
+
     maxS = stStari + 5;
     /*
     if (maxS > StPlesov - stNovi)
@@ -108,154 +107,269 @@ function KreSezOsv(pOBJID, stS, stN) {
   }
 }
 
-function nalozi_body(par0) {
-  if (par0 == 'home') {
+function runPlay(tip, vrsticar, vrstica) {
 
-    strtmp = '';
-    PlesiSt = 0
-    oldidp = '';
-    zakljuci = 0;
+  if (tip == 0) {
+    Randomarlinki[vrsticar][2] = 1;
+  }
 
+  if (tip == 1) {
+    Randomarlinki[vrsticar][1] = 1;
+    gFrameNav(vrstica)
+  }
+
+  prikazi_PListo(10, 'bodydiv');
+}
+
+
+function prikazi_PListo(tip, divid) {
+  let strtmp = '';
+  let strtmpbot = '';
+  let tmparr = [];
+
+
+  if (tip == 1) {
+    genrandomPlayL(stStari, stNovi, zdruziActive);
+  }
+
+  if (tip == 0)
+    tmparr = RandomarlinkiAll;
+  else
+    tmparr = Randomarlinki;
+
+
+  if (tip < 10) {
     strtmp = `
 <div class="container-fluid">
   <div class="row g-2">
     `;
 
-    for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
+    for (vrsticar = 0; vrsticar < tmparr.length; vrsticar++) {
 
-
-
-      if (oldidp != arlinki[vrstica][0]) {
-        if (zakljuci == 1) {
-          zakljuci = 0;
-          //add zaključek
-          strtmp = strtmp + `
-        </div>
-      </div>
-    </div>
-     `;
-
-        }
-
-
-        oldidp = arlinki[vrstica][0];
-        PlesiSt++;
-        strPlesiSt = String(PlesiSt) + '.';
-
-        zakljuci = 1;
-
-        //add header
-        strtmp = strtmp + `
+      strtmp = strtmp + `
      <div class="col-md-4 bg-dark text-light">
       <div class="card shadow-sm rounded-2 p-1 h-100 bg-dark text-light">
-        <div class="fs-7 fw-bold bg-dark text-light">${PlesiSt}</div>
-        <div class="text-muted">
+        <div class="fs-7 fw-bold bg-dark text-light">${vrsticar + 1}</div>
+         <div class="text-muted">
      `;
 
+      for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
+        if (tmparr[vrsticar][0] === arlinki[vrstica][0]) {
+          strtmp = strtmp + `
+        <p class="m-0 lh-base d-flex flex-column align-items-center bg-dark text-light" onclick="gFrameNav(${vrstica})">
+        <span class="fs-3 fw-bold">${arlinki[vrstica][2]}</span>
+        <span class="fs-7">${arlinki[vrstica][3]}</span>
+        </p>
+      `;
+        }
       }
 
-      arlinki[vrstica][20] = PlesiSt;
-      //add line
       strtmp = strtmp + `
-<p class="m-0 lh-base d-flex flex-column align-items-center bg-dark text-light" onclick="gFrameNav(${vrstica})">
-  <span class="fs-3 fw-bold">${arlinki[vrstica][2]}</span>
-  <span class="fs-7">${arlinki[vrstica][3]}</span>
-</p>
+         </div>
+      </div>
+    </div>
 `;
 
 
-
     }
-
-    if (zakljuci == 1) {
-      zakljuci = 0;
-      //add zaključek
-      strtmp = strtmp + `
-        </div>
-      </div>
-    </div>
-     `;
-    }
-
-
     strtmp = strtmp + `
-      </div>
-    </div>
+  </div >
+</div >
+        `;
+  }
+
+
+  if (tip == 10) {
+    /*
+        strtmp = `
+    <div class="container-fluid">
+      <div class="row g-2">
+        `;
+    */
+
+
+    stzapred = 0
+
+    vfs7 = 'fs-7';
+    vfs3 = 'fs-3 fw-bold';
+    vtextlight = 'text-white';
+
+    for (vrsticar = 0; vrsticar < tmparr.length; vrsticar++) {
+
+      if (tmparr[vrsticar][1] == 0 && tmparr[vrsticar][2] == 0)
+        stzapred++;
+
+      if (stzapred > 0) {
+
+        if (stzapred == 2) {
+          vfs7 = 'fs-9';
+          vfs3 = 'fs-6';
+          vtextlight = 'text-siva';
+
+        }
+
+        strtmp = strtmp + `
+         <div class="text-muted">
+     `;
+
+
+        for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
+          if (tmparr[vrsticar][0] === arlinki[vrstica][0]) {
+            strtmp = strtmp + `
+        <p class="m-0 lh-base d-flex flex-column align-items-center bg-dark ${vtextlight}"`
+
+            if (stzapred == 1) {
+              strtmp = strtmp + `
+        onclick="runPlay(1,${vrsticar},${vrstica})"
+        `;
+
+
+              strtmpbot = `
+  <div style="position: absolute; bottom: 10px; left: 0; right: 0;"
+  class="d-flex justify-content-between px-3 bg-dark p-2">
+  <button class="btn btn-outline-light" onclick="runPlay(0,${vrsticar},${vrstica})">Preskoči</button>
+  <button class="btn btn-outline-light" onclick="runPlay(1,${vrsticar},${vrstica})">Predvajaj</button>
+   </div>
   `;
 
+            }
+
+            strtmp = strtmp + `
+        >
+        <span class="${vfs3}  fw-bold">${arlinki[vrstica][2]}</span>
+        <span class="${vfs7}">${arlinki[vrstica][3]}</span>
+        <span class="${vfs7}"></span>
+        </p>
+      `;
 
 
-    document.getElementById('bodydiv').innerHTML = strtmp;
 
+
+
+
+
+
+
+            break;
+          }
+        }
+
+
+        strtmp = strtmp + `
+         </div>
+    `;
+
+        if (stzapred == 2)
+          break;
+
+
+      }
+
+
+
+    }
+    /*    
+        strtmp = strtmp + `
+      </div >
+    </div >
+            `;
+    */
+  }
+
+
+
+
+
+
+  
+  strtmp = strtmp + strtmpbot;
+
+
+
+
+
+
+
+
+
+  if (divid != '')
+    document.getElementById(divid).innerHTML = strtmp
+
+}
+
+
+function nalozi_body(par0) {
+  if (par0 == 'home') {
+    prikazi_PListo(0, 'bodydiv');
     return 1
   }
 
 
   if (par0 == 'about') {
     document.getElementById('bodydiv').innerHTML = `
-<div class="container-fluid">
-  <div class="row g-2"> <!-- malo razmaka med stolpci -->
+        < div class="container-fluid" >
+          <div class="row g-2"> <!-- malo razmaka med stolpci -->
 
-    <div class="col-md-4">
-      <div class="card shadow-sm rounded-2 p-1 h-100">
-        <div class="fs-4 fw-bold text-primary mb-1">01</div>
-        <div class="text-muted">
-          <p class="m-0 lh-base">Prva vrstica besedila.</p>
-          <p class="m-0 lh-base">Druga vrstica besedila.</p>
-          <p class="m-0 lh-base">Tretja vrstica.</p>
-        </div>
-      </div>
-    </div>
+            <div class="col-md-4">
+              <div class="card shadow-sm rounded-2 p-1 h-100">
+                <div class="fs-4 fw-bold text-primary mb-1">01</div>
+                <div class="text-muted">
+                  <p class="m-0 lh-base">Prva vrstica besedila.</p>
+                  <p class="m-0 lh-base">Druga vrstica besedila.</p>
+                  <p class="m-0 lh-base">Tretja vrstica.</p>
+                </div>
+              </div>
+            </div>
 
-    <div class="col-md-4">
-      <div class="card shadow-sm rounded-2 p-1 h-100">
-        <div class="fs-4 fw-bold text-primary mb-1">02</div>
-        <div class="text-muted">
-          Prva vrstica besedila.<br>
-          Druga vrstica besedila.<br>
-          Tretja vrstica.
-        </div>
-      </div>
-    </div>
+            <div class="col-md-4">
+              <div class="card shadow-sm rounded-2 p-1 h-100">
+                <div class="fs-4 fw-bold text-primary mb-1">02</div>
+                <div class="text-muted">
+                  Prva vrstica besedila.<br>
+                    Druga vrstica besedila.<br>
+                      Tretja vrstica.
+                    </div>
+                </div>
+              </div>
 
-    <div class="col-md-4">
-      <div class="card shadow-sm rounded-2 p-1 h-100">
-        <div class="fs-4 fw-bold text-primary mb-1">03</div>
-        <div class="text-muted">
-          Prva vrstica besedila.<br>
-          Druga vrstica besedila.<br>
-          Tretja vrstica.
-        </div>
-      </div>
-    </div>
+              <div class="col-md-4">
+                <div class="card shadow-sm rounded-2 p-1 h-100">
+                  <div class="fs-4 fw-bold text-primary mb-1">03</div>
+                  <div class="text-muted">
+                    Prva vrstica besedila.<br>
+                      Druga vrstica besedila.<br>
+                        Tretja vrstica.
+                      </div>
+                  </div>
+                </div>
 
-    <div class="col-md-4">
-      <div class="card shadow-sm rounded-2 p-1 h-100">
-        <div class="fs-4 fw-bold text-primary mb-1">03</div>
-        <div class="text-muted">
-          Prva vrstica besedila.<br>
-          Druga vrstica besedila.<br>
-          Tretja vrstica.
-        </div>
-      </div>
-    </div>
+                <div class="col-md-4">
+                  <div class="card shadow-sm rounded-2 p-1 h-100">
+                    <div class="fs-4 fw-bold text-primary mb-1">03</div>
+                    <div class="text-muted">
+                      Prva vrstica besedila.<br>
+                        Druga vrstica besedila.<br>
+                          Tretja vrstica.
+                        </div>
+                    </div>
+                  </div>
 
-  </div>
-</div>
-`;
+                </div>
+              </div>
+              `;
     return 1
   }
 
 
-  
+
 
   if (par0 === 'predvajajSeznam') {
-      document.getElementById('bodydiv').innerHTML = `to je play`
-   }
+    prikazi_PListo(10, 'bodydiv');
+  }
 
 
 
-   
+
   if (par0 == 'services') {
 
 
@@ -269,20 +383,20 @@ function nalozi_body(par0) {
     urli = window.open('https://www.youtube.com/watch?v=IYd1-cPwQCk', '_blank');
     document.getElementById('bodydiv').innerHTML = `
 -->: https://www.youtube.com/watch?v=IYd1-cPwQCk
-`;
+              `;
 
 
 
     /*
     if (timerx) clearInterval(timerx);
-    
+
         timerx = setInterval(() => {
             if (urli.closed) {
                 clearInterval(timerx); // ustavi interval
-                alert('Tab se je zaprl');
+              alert('Tab se je zaprl');
             }
         }, 1000);
-    */
+              */
 
     document.addEventListener("visibilitychange", function () {
       if (!document.hidden) {
@@ -339,8 +453,13 @@ function nalozi_body(par0) {
   </div>
 
 <a href="#" class="btn-img">
-  <img src="img/kocka.gif" alt="Start" class="btn-img-inner black-style">
+  <img src="img/kocka.gif" alt="Start" class="btn-img-inner black-style" onclick="prikazi_PListo(1,'playdiv')" >
 </a>
+
+<div id="playdiv" class="container mt-5 bg-dark text-light">
+
+
+</div>
 
 
 
@@ -349,87 +468,8 @@ function nalozi_body(par0) {
 
     KreSezOsvAkt = 1;
     KreSezOsv('');
-
-
-    /*
-    zdruziActive = false;
-    stariRange = document.getElementById("stariRange");
-    stariNumber = document.getElementById("stariNumber");
-    novoRange = document.getElementById("novoRange");
-    novoNumber = document.getElementById("novoNumber");
-    zdruziIcon = document.getElementById("zdruziIcon");
-    
-    function toggleZdruzi() {
-       zdruziActive ^= 1;
-    
-      if (zdruziActive) {
-        zdruziIcon.className = "bi bi-check-circle-fill text-success fs-4";
-      } else {
-        zdruziIcon.className = "bi bi-circle text-secondary fs-4";
-      }
-    }
-    
-    function syncPair(range, number, otherRange, otherNumber) {
-      range.addEventListener("input", () => {
-        number.value = range.value;
-    
-        if (zdruziActive) {
-          otherRange.value = range.value;
-          otherNumber.value = range.value;
-        }
-      });
-    
-      number.addEventListener("input", () => {
-        range.value = number.value;
-    
-        if (zdruziActive) {
-          otherRange.value = number.value;
-          otherNumber.value = number.value;
-        }
-      });
-    }
-    
-    syncPair(stariRange, stariNumber, novoRange, novoNumber);
-    syncPair(novoRange, novoNumber, stariRange, stariNumber);  
-    toggleZdruzi(); 
-    
-    
-    */
-
-
     return 1
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

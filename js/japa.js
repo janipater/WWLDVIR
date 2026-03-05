@@ -482,25 +482,21 @@ function nalozi_body(par0) {
 function DokEvents(tip) {
   if (tip == 'mainnazaj') {
     if (timerOn) {
-      timerOn = 0;
-      let DTnow=Date.now();
-      if (DTnow > timerZac) {
+      let DTnow = Date.now();
+      if (DTnow > timerZac + 5000) {
+        timerOn = 0;
+
         timerSumPlay = timerSumPlay + (DTnow - timerZac);
-        //document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, timerSumPlay);
-         document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, DTnow);
+        document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, timerSumPlay);
+
+        if (linkpage != null) {
+          linkpage.close();
+          linkpage = null;
+        }
       }
     }
-    if (linkpage != null) {
-      linkpage.close();
-      linkpage = null;
-    }
-
-
   }
 }
-
-
-
 
 
 

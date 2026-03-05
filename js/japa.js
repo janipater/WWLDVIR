@@ -483,18 +483,17 @@ function DokEvents(tip) {
   if (tip == 'mainnazaj') {
     if (timerOn) {
       timerOn = 0;
-      if (Date.now() > timerZac){
-        timerSumPlay = timerSumPlay + (Date.now() - timerZac);
-      alert(prikaziTimer(1, timerSumPlay));
-      document.getElementById("PlayTime").innerText='⏱'+prikaziTimer(1, timerSumPlay);
-      } 
+      if (Date.now() > timerZac) {
+        timerSumPlay = timerSumPlay + 100000 //;(Date.now() - timerZac);
+        document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, timerSumPlay);
+      }
     }
-      if (linkpage != null) {
+    if (linkpage != null) {
       linkpage.close();
       linkpage = null;
     }
-  
-  
+
+
   }
 }
 

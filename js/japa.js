@@ -486,7 +486,8 @@ function DokEvents(tip) {
       let DTnow=Date.now();
       if (DTnow > timerZac) {
         timerSumPlay = timerSumPlay + (DTnow - timerZac);
-        document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, timerSumPlay);
+        //document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, timerSumPlay);
+         document.getElementById("PlayTime").innerText = '⏱' + prikaziTimer(1, DTnow);
       }
     }
     if (linkpage != null) {

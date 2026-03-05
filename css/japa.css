@@ -18,6 +18,10 @@
     color: #AAAAAA;
 }
 
+.vh-60 {
+    height: 60vh;
+}
+
 .vh-70 {
     height: 70vh;
 }

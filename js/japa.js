@@ -182,7 +182,7 @@ function prikazi_PListo(tip, divid) {
   if (tip == 10) {
 
     strtmp = `
-<div class="d-flex justify-content-center align-items-center vh-80">
+<div class="d-flex justify-content-center align-items-center vh-70">
   <div class="p-4 bg-dark">
   `;
 
@@ -489,7 +489,7 @@ function DokEvents(tip) {
       timerOn = 0;
       if (Date.now() > timerZac){
         timerSumPlay = timerSumPlay + (Date.now() - timerZac);
-      document.getElementById("PlayTime").innerText='⏱ '+prikaziTimer(1, timerSumPlay);
+      document.getElementById("PlayTime").innerText='⏱'+prikaziTimer(1, timerSumPlay);
       } 
     }
   }

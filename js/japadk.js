@@ -132,6 +132,7 @@ function gFrameNav(arlinkliID) {
 
   timerZac = Date.now();
   timerOn = 1;
+
   linkpage = window.open(arlinki[arlinkliID][1], "");
 
 

@@ -481,10 +481,6 @@ function nalozi_body(par0) {
 
 function DokEvents(tip) {
   if (tip == 'mainnazaj') {
-    if (linkpage != null) {
-      linkpage.close();
-      linkpage = null;
-    }
     if (timerOn) {
       timerOn = 0;
       if (Date.now() > timerZac){
@@ -492,6 +488,12 @@ function DokEvents(tip) {
       document.getElementById("PlayTime").innerText='⏱'+prikaziTimer(1, timerSumPlay);
       } 
     }
+      if (linkpage != null) {
+      linkpage.close();
+      linkpage = null;
+    }
+  
+  
   }
 }
 

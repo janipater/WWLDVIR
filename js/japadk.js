@@ -4,6 +4,9 @@ var Randomarlinki = [];
 var RandomarlinkiAll = [];
 var strandom = null;
 var stskip = null;
+var timerSumPlay = 0;
+var timerZac = 0;
+var timerOn = 0;
 
 
 
@@ -127,24 +130,38 @@ function hexToUtf(hex) {
 
 function gFrameNav(arlinkliID) {
 
-
+  timerZac = Date.now();
+  timerOn = 1;
   linkpage = window.open(arlinki[arlinkliID][1], "");
 
 
 }
 
 
+function prikaziTimer(BrezVred, TimerIntervalMs) {
+  let totalSeconds = Math.floor(TimerIntervalMs / 1000);
+  let ss = totalSeconds % 60;
+  let totalMinutes = Math.floor(totalSeconds / 60);
+  let mm = totalMinutes % 60;
+  let hh = Math.floor(totalMinutes / 60);
 
-function DokEvents(tip)
-{
-  if (tip == 'mainnazaj') {
-    if (linkpage != null) {
-      linkpage.close();
-      linkpage = null;
-    }
+  let retval = '';
+  if (hh !== 0 || BrezVred == 0) retval += String(hh).padStart(2, '0') + ':';
+  if (hh !== 0 || mm !== 0 || BrezVred == 0) retval += String(mm).padStart(2, '0') + ':';
+  if (hh !== 0 || mm !== 0 || ss !== 0 || BrezVred == 0) retval += String(ss).padStart(2, '0');
 
-
-  }
-
+  return retval;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

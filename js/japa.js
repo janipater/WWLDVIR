@@ -478,3 +478,33 @@ function nalozi_body(par0) {
 
   return 0
 }
+
+function DokEvents(tip) {
+  if (tip == 'mainnazaj') {
+    if (linkpage != null) {
+      linkpage.close();
+      linkpage = null;
+    }
+    if (timerOn) {
+      timerOn = 0;
+      if (Date.now() > timerZac){
+        timerSumPlay = timerSumPlay + (Date.now() - timerZac);
+      document.getElementById("PlayTime").innerText='⏱ '+prikaziTimer(1, timerSumPlay);
+      } 
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

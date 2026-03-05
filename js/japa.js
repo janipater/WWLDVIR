@@ -410,15 +410,6 @@ function nalozi_body(par0) {
         }, 1000);
               */
 
-    document.addEventListener("visibilitychange", function () {
-      if (!document.hidden) {
-        alert("Uporabnik nazaj na main page");
-      }
-      if (document.hidden) {
-        alert("Uporabnik zapustil na main page");
-      }
-    });
-
 
     return 1
   }

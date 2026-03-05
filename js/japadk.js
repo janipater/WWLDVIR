@@ -1,5 +1,5 @@
 
-var linkpage;
+var linkpage = null;
 var Randomarlinki = [];
 var RandomarlinkiAll = [];
 var strandom = null;
@@ -34,7 +34,7 @@ for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
 
 
 
-genrandomPlayL(5,5,0);
+genrandomPlayL(5, 5, 0);
 
 
 x = 1;
@@ -69,7 +69,7 @@ function genrandomPlayL(stp, stz, zdr) {
   let RandomarlinkiZ = [];
   let RandomarlinkiP = [];
 
-  Randomarlinki=[];
+  Randomarlinki = [];
 
 
   if (stp > '0') {
@@ -79,9 +79,9 @@ function genrandomPlayL(stp, stz, zdr) {
 
 
     for (vrstica = 0; vrstica < RandomarlinkiP.length; vrstica++) {
-      Randomarlinki.push([RandomarlinkiP[vrstica][0],0,0]);
-//      Randomarlinki[Randomarlinki.length] = RandomarlinkiP[vrstica];
-       }
+      Randomarlinki.push([RandomarlinkiP[vrstica][0], 0, 0]);
+      //      Randomarlinki[Randomarlinki.length] = RandomarlinkiP[vrstica];
+    }
   }
 
   if (stz > '0') {
@@ -89,7 +89,7 @@ function genrandomPlayL(stp, stz, zdr) {
     //shuffle(RandomarlinkiZ);
 
     for (vrstica = 0; vrstica < RandomarlinkiZ.length; vrstica++) {
-      Randomarlinki.push([RandomarlinkiZ[vrstica][0],0,0]);
+      Randomarlinki.push([RandomarlinkiZ[vrstica][0], 0, 0]);
       //Randomarlinki[Randomarlinki.length] = RandomarlinkiZ[vrstica];
     }
 
@@ -126,8 +126,25 @@ function hexToUtf(hex) {
 
 
 function gFrameNav(arlinkliID) {
-  linkpage = window.open(arlinki[arlinkliID][1], null, '');
+
+
+  linkpage = window.open(arlinki[arlinkliID][1], "");
+
+
 }
 
 
+
+function DokEvents(tip)
+{
+  if (tip == 'mainnazaj') {
+    if (linkpage != null) {
+      linkpage.close();
+      linkpage = null;
+    }
+
+
+  }
+
+}
 

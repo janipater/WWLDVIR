@@ -82,6 +82,17 @@ $(function(){
          navMain.collapse('hide');
      });
  });
+
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) {
+        DokEvents('mainnazaj');
+        console.log("<-- nazaj");
+      }
+      if (document.hidden) {
+        console.log("--> zapustil");
+      }
+    });
+
     </script>
 
 </body>

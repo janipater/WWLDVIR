@@ -485,7 +485,8 @@ function DokEvents(tip) {
       timerOn = 0;
       if (Date.now() > timerZac){
         timerSumPlay = timerSumPlay + (Date.now() - timerZac);
-      document.getElementById("PlayTime").innerText='⏱'+prikaziTimer(1, timerSumPlay);
+document.getElementById("PlayTime").innerText="⏱"+String(timerSumPlay);
+      //document.getElementById("PlayTime").innerText='⏱'+prikaziTimer(1, timerSumPlay);
       } 
     }
       if (linkpage != null) {

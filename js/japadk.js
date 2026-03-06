@@ -1,5 +1,6 @@
 
 var linkpage = null;
+var arlinki =[];
 var Randomarlinki = [];
 var RandomarlinkiAll = [];
 var strandom = null;
@@ -10,7 +11,10 @@ var timerOn = 0;
 
 
 
+function uredigrupdata(Tip) {
 
+Randomarlinki.length = 0;
+RandomarlinkiAll.length = 0;
 
 for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
   obstaja = 0;
@@ -35,12 +39,12 @@ for (vrstica = 0; vrstica < arlinki.length; vrstica++) {
 
 }
 
-
-
 genrandomPlayL(5, 5, 0);
 
 
 x = 1;
+
+}
 
 
 

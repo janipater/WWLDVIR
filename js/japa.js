@@ -193,8 +193,11 @@ function prikazi_PListo(tip, divid) {
     vfs7 = 'fs-7';
     vfs3 = 'fs-1 fw-bold';
     vtextlight = 'text-white';
-
+    stplesnv = 0;
     for (vrsticar = 0; vrsticar < tmparr.length; vrsticar++) {
+
+      if (tmparr[vrsticar][1] == 1)
+        stplesnv++;
 
       if (tmparr[vrsticar][1] == 0 && tmparr[vrsticar][2] == 0)
         stzapred++;
@@ -207,6 +210,12 @@ function prikazi_PListo(tip, divid) {
           vtextlight = 'text-siva';
 
         }
+
+        if (stzapred == 1)
+          strtmp = strtmp + `
+        <div class="fs-7 fw-bold bg-dark text-light">${stplesnv + 1}</div>
+     `;
+
 
         strtmp = strtmp + `
          <div class="text-muted">
@@ -311,7 +320,7 @@ function prikazi_PListo(tip, divid) {
 
 
 function nalozi_body(par0) {
-  if (par0 == 'home') {
+  if (par0 == 'SeznamPlesov') {
     prikazi_PListo(0, 'bodydiv');
     return 1
   }
@@ -499,7 +508,24 @@ function DokEvents(tip) {
 }
 
 
+function GrupaSetData(idgrupe) {
+  document.getElementById("Izbskupina").innerHTML = APgrupe[idgrupe];
+  arlinki.length = 0;
 
+  for (ples = 0; ples < APlesiGrupe[idgrupe].length; ples++) {
+    for (plesi = 0; plesi < APlesi.length; plesi++) {
+
+      if (APlesiGrupe[idgrupe][ples] === APlesi[plesi][0]) {
+        arlinki.push(APlesi[plesi]);
+      }
+    }
+  }
+
+  uredigrupdata(1);
+
+  nalozi_body('SeznamPlesov');
+
+}
 
 
 

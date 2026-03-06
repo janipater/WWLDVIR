@@ -29,3 +29,10 @@
 .vh-80 {
     height: 80vh;
 }
+
+
+    #IzbGrupa .dropdown-item {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        line-height: 1.5;
+    }

@@ -510,6 +510,7 @@ function DokEvents(tip) {
 
 function GrupaSetData(idgrupe) {
   document.getElementById("Izbskupina").innerHTML = APgrupe[idgrupe];
+  document.title=APgrupe[idgrupe];
   arlinki.length = 0;
 
   for (ples = 0; ples < APlesiGrupe[idgrupe].length; ples++) {
